@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AddressBook
 {
@@ -20,34 +21,48 @@ namespace AddressBook
         {
             Console.WriteLine("Welcome to Address Book");
 
-            Contact contact = new Contact();
+            List<Contact> contacts = new List<Contact>();
 
-            Console.Write("Enter First Name: ");
-            contact.FirstName = Console.ReadLine();
+            Console.Write("Enter number of contacts: ");
+            int n = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Enter Last Name: ");
-            contact.LastName = Console.ReadLine();
+            for (int i = 0; i < n; i++)
+            {
+                Contact c = new Contact();
 
-            Console.Write("Enter Address: ");
-            contact.Address = Console.ReadLine();
+                Console.Write("\nEnter First Name: ");
+                c.FirstName = Console.ReadLine();
 
-            Console.Write("Enter City: ");
-            contact.City = Console.ReadLine();
+                Console.Write("Enter Last Name: ");
+                c.LastName = Console.ReadLine();
 
-            Console.Write("Enter State: ");
-            contact.State = Console.ReadLine();
+                Console.Write("Enter Address: ");
+                c.Address = Console.ReadLine();
 
-            Console.Write("Enter Zip: ");
-            contact.Zip = Console.ReadLine();
+                Console.Write("Enter City: ");
+                c.City = Console.ReadLine();
 
-            Console.Write("Enter Phone: ");
-            contact.Phone = Console.ReadLine();
+                Console.Write("Enter State: ");
+                c.State = Console.ReadLine();
 
-            Console.Write("Enter Email: ");
-            contact.Email = Console.ReadLine();
+                Console.Write("Enter Zip: ");
+                c.Zip = Console.ReadLine();
 
-            Console.WriteLine("\nContact Added Successfully:");
-            Console.WriteLine(contact.FirstName + " " + contact.LastName);
+                Console.Write("Enter Phone: ");
+                c.Phone = Console.ReadLine();
+
+                Console.Write("Enter Email: ");
+                c.Email = Console.ReadLine();
+
+                contacts.Add(c);
+            }
+
+            Console.WriteLine("\nAll Contacts:");
+
+            foreach (var c in contacts)
+            {
+                Console.WriteLine(c.FirstName + " " + c.LastName + " | " + c.Phone);
+            }
         }
     }
 }
