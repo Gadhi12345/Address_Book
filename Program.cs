@@ -57,6 +57,38 @@ namespace AddressBook
                 contacts.Add(c);
             }
 
+            Console.Write("\nEnter First Name to Edit: ");
+            string name = Console.ReadLine();
+
+            foreach (var c in contacts)
+            {
+                if (c.FirstName.Equals(name, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("Editing Contact...");
+
+                    Console.Write("Enter New Address: ");
+                    c.Address = Console.ReadLine();
+
+                    Console.Write("Enter New City: ");
+                    c.City = Console.ReadLine();
+
+                    Console.Write("Enter New State: ");
+                    c.State = Console.ReadLine();
+
+                    Console.Write("Enter New Zip: ");
+                    c.Zip = Console.ReadLine();
+
+                    Console.Write("Enter New Phone: ");
+                    c.Phone = Console.ReadLine();
+
+                    Console.Write("Enter New Email: ");
+                    c.Email = Console.ReadLine();
+
+                    Console.WriteLine("Contact Updated Successfully!");
+                    break;
+                }
+            }
+
             Console.WriteLine("\nAll Contacts:");
 
             foreach (var c in contacts)
