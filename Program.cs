@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Collections.Generic;
 
 namespace AddressBook
@@ -9,6 +8,7 @@ namespace AddressBook
         public string FirstName;
         public string LastName;
         public string Phone;
+        public string City;
     }
 
     class Program
@@ -33,37 +33,30 @@ namespace AddressBook
                 Console.Write("Enter Phone: ");
                 c.Phone = Console.ReadLine();
 
+                Console.Write("Enter City: ");
+                c.City = Console.ReadLine();
+
                 contacts.Add(c);
             }
 
-            Console.Write("\nEnter First Name to Delete: ");
+            Console.Write("\nEnter First Name to Search: ");
             string name = Console.ReadLine();
 
-            Contact found = null;
+            bool found = false;
 
             foreach (var c in contacts)
             {
                 if (c.FirstName.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
-                    found = c;
-                    break;
+                    Console.WriteLine("\nContact Found:");
+                    Console.WriteLine(c.FirstName + " " + c.LastName + " | " + c.Phone + " | " + c.City);
+                    found = true;
                 }
             }
 
-            if (found != null)
-            {
-                contacts.Remove(found);
-                Console.WriteLine("Contact Deleted Successfully!");
-            }
-            else
+            if (!found)
             {
                 Console.WriteLine("Contact Not Found!");
-            }
-
-            Console.WriteLine("\nRemaining Contacts:");
-            foreach (var c in contacts)
-            {
-                Console.WriteLine(c.FirstName + " " + c.LastName + " | " + c.Phone);
             }
         }
     }
