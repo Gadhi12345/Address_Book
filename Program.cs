@@ -8,55 +8,56 @@ namespace AddressBook
         public string FirstName;
         public string LastName;
         public string Phone;
-        public string City;
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            List<Contact> contacts = new List<Contact>();
+            Dictionary<string, List<Contact>> addressBooks = new Dictionary<string, List<Contact>>();
 
-            Console.Write("Enter number of contacts: ");
-            int n = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter number of address books: ");
+            int bookCount = Convert.ToInt32(Console.ReadLine());
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < bookCount; i++)
             {
-                Contact c = new Contact();
+                Console.Write("\nEnter Address Book Name: ");
+                string bookName = Console.ReadLine();
 
-                Console.Write("Enter First Name: ");
-                c.FirstName = Console.ReadLine();
+                List<Contact> contacts = new List<Contact>();
 
-                Console.Write("Enter Last Name: ");
-                c.LastName = Console.ReadLine();
+                Console.Write("Enter number of contacts: ");
+                int n = Convert.ToInt32(Console.ReadLine());
 
-                Console.Write("Enter Phone: ");
-                c.Phone = Console.ReadLine();
-
-                Console.Write("Enter City: ");
-                c.City = Console.ReadLine();
-
-                contacts.Add(c);
-            }
-
-            Console.Write("\nEnter First Name to Search: ");
-            string name = Console.ReadLine();
-
-            bool found = false;
-
-            foreach (var c in contacts)
-            {
-                if (c.FirstName.Equals(name, StringComparison.OrdinalIgnoreCase))
+                for (int j = 0; j < n; j++)
                 {
-                    Console.WriteLine("\nContact Found:");
-                    Console.WriteLine(c.FirstName + " " + c.LastName + " | " + c.Phone + " | " + c.City);
-                    found = true;
+                    Contact c = new Contact();
+
+                    Console.Write("Enter First Name: ");
+                    c.FirstName = Console.ReadLine();
+
+                    Console.Write("Enter Last Name: ");
+                    c.LastName = Console.ReadLine();
+
+                    Console.Write("Enter Phone: ");
+                    c.Phone = Console.ReadLine();
+
+                    contacts.Add(c);
                 }
+
+                addressBooks[bookName] = contacts;
             }
 
-            if (!found)
+            Console.WriteLine("\nAll Address Books:");
+
+            foreach (var book in addressBooks)
             {
-                Console.WriteLine("Contact Not Found!");
+                Console.WriteLine("\nBook: " + book.Key);
+
+                foreach (var c in book.Value)
+                {
+                    Console.WriteLine(c.FirstName + " " + c.LastName + " | " + c.Phone);
+                }
             }
         }
     }
